@@ -15,7 +15,18 @@ app.use(express.urlencoded({extended: true}));
 // use static files from the public folder
 app.use(express.static('public'));
 
-// Database connection (Placeholder)
+// Database connection
+const connectDB = async () => {
+    try {
+        await mongoose.connect(process.env.MONGO_CONNECTION_STRING);
+        console.log('MongoDB Connected Successfully');
+    } catch (e) {
+        console.error('MongoDB Connection Error: ', e);
+        process.exit(1);
+    }
+}
+
+connectDB();
 
 // Routes 
 
