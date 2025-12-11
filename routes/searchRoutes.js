@@ -1,0 +1,34 @@
+const express = require('express');
+const router = express.Router();
+const axios = require('axios');
+
+// GET route, shows the empty search field
+router.get('/', (req, res) => {
+    res.render('search', { movieData: null, error: null});
+});
+
+// POST route, gets picked up once user clicks "search"
+router.post('/', async(req, res) => {
+    let title = req.body.title;
+    const apiKey = process.env.API_KEY;
+
+    // build OMDb API URL
+    const url = `http://www.omdbapi.com/?apikey=${apiKey}&t=${title}`;
+
+    try {
+        const response = await axios.get(url);
+        const data = response.data;
+
+        // send a 200 OK code if movie was found, and add an error property if needed
+        if (data.Error) {
+            res.render('search', { movieData: null, error: data.Error });
+        } else {
+            res.render('search', { movieData: data, error: null });
+        }
+    } catch (e) {
+        console.error(e);
+        res.render('search', { movieData: null, error: 'Connection to API failed!' });
+    }
+});
+
+module.exports = router;

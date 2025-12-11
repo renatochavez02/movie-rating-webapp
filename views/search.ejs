@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Movie</title>
+</head>
+<body>
+    <div>
+        <a href="/">Home</a>
+        <a href="/search">Search Movie</a>
+    </div>
+
+    <h1>Search a movie to rate!</h1>
+
+    <form action="/search" method="POST">
+        <input type="text" name="title" placeholder="Enter the movie title (e.g., Interstellar)" required style="width: 200px">
+        <br><br>
+        <button type="submit">Search</button>
+    </form>
+
+    <hr>
+
+    <% if (movieData) { %>
+        <div class="movie-result">
+            <img src="<%= movieData.Poster %>" alt="Poster">
+            <div class="movie-info">
+                <h2><%= movieData.Title %> (<%= movieData.Year %>)</h2>
+                <p><strong>Plot: </strong> <%= movieData.Plot %></p>
+                
+                <button disabled>Rate Movie</button>
+            </div>
+        </div>
+    <% } else if (error) { %>
+        <div style="color:red; margin-top: 20px;">
+            <h3>Error: <%= error %></h3>
+        </div>
+    <% } %>
+
+</body>
+</html>

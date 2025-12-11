@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+const searchRoutes = require('./routes/searchRoutes');
 
 dotenv.config();
 
@@ -34,6 +35,8 @@ connectDB();
 app.get('/', (req, res) => {
     res.render('index', {title: 'Movie Rating App'});
 });
+
+app.use('/search', searchRoutes);
 
 // Start server
 const PORT = process.env.PORT || 3000;
