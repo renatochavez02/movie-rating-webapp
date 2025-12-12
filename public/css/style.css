@@ -1,0 +1,62 @@
+body {
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+#search-button, #history-button, #clear-button, #save-button, #home-button {
+    padding: 0.8rem 1rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+    border-radius: 0.5rem;
+}
+
+#search-button {
+    background-color: cadetblue;
+}
+
+#history-button {
+    background-color: rgb(235, 211, 163);
+}
+
+#clear-button {
+    background-color: rgb(223, 22, 22);
+}
+
+#save-button {
+    background-color: rgb(4, 163, 4);
+}
+
+#home-button {
+    background-color: chocolate;
+}
+
+#search-button:hover, #history-button:hover, #clear-button:hover, #save-button:hover, #home-button:hover {
+    transform: scale(1.05);
+}
+
+.redirect-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+textarea[name="review"] {
+    resize: vertical;
+    vertical-align: top;
+    font-size: 1rem;
+}
+
+input[name="rating"] {
+    padding: 5px;
+    font-size: 1rem;
+}
+
+#success-message {
+    color: green;
+    font-size: 1.3rem;
+}

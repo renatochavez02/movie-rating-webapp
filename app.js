@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const searchRoutes = require('./routes/searchRoutes');
+const Movie = require('./models/Movie');
 
 dotenv.config();
 
@@ -37,6 +38,18 @@ app.get('/', (req, res) => {
 });
 
 app.use('/search', searchRoutes);
+
+// Route to clear previous ratings
+app.get('/clear', async (req, res) => {
+    try {
+        await Movie.deleteMany({});
+        console.log("Database cleared. Ready for new session.");
+        res.render('cleared');
+    } catch (e) {
+        console.error(e);
+        res.send("Error clearing database.");
+    }
+});
 
 // Start server
 const PORT = process.env.PORT || 3000;

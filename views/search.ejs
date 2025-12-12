@@ -4,24 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search Movie</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <div>
-        <a href="/">Home</a>
-        <a href="/search">Search Movie</a>
-        <a href="/search/saved">Saved Ratings</a>
-    </div>
 
-    <h1>Search a movie to rate!</h1>
+    <h1>Search a movie to rate ! 👀🔎</h1>
+
+    <% if (success) { %>
+        <div id="success-message">
+            <strong>Your rating has been saved!</strong>
+        </div>
+    <% } %>
+
+    <br>
 
     <form action="/search" method="POST">
-        <input type="text" name="title" placeholder="Enter the movie title (e.g., Interstellar)" required style="width: 200px">
+        <input type="text" name="title" placeholder="(e.g., Interstellar)" required style="width: 200px">
         <br><br>
-        <button type="submit">Search</button>
+        <button type="submit" id="search-button">Search</button>
     </form>
 
     <hr>
+
+    <div class="redirect-links">
+        <a href="/">Home Page</a>
+        <a href="/search/saved">My Ratings</a>
+    </div>
+
+    <br><br>
 
     <% if (movieData) { %>
         <div class="movie-result">
@@ -30,19 +43,18 @@
                 <h2><%= movieData.Title %> (<%= movieData.Year %>)</h2>
                 <p><strong>Plot: </strong> <%= movieData.Plot %></p>
                 
-                <form action="/search/rate" method="POST">
+                <form action="/search/rate" method="POST" onsubmit="return confirm('Are you sure you want to submit this rating?');">
                     <input type = "hidden" name = "title" value="<%= movieData.Title %>">
-                    <label>Rating (1-10):</label>
+                    <label><strong>Rating (1-10):</strong></label>
                     <input type="number" name="rating" min="1" max="10" required>
-                    <br>
+                    <br><br>
 
-                    <label>Comment:</label>
-                    <textarea name="comment"></textarea>
+                    <label><strong>Brief Review:</strong></label>
+                    <textarea name="review" rows="5" cols="40"></textarea>
 
-                    <br>
-                    <button type="submit">Save Rating</button>
+                    <br><br>
+                    <button type="submit" id="save-button">Save Rating</button>
                 </form>
-                <button disabled>Rate Movie</button>
             </div>
         </div>
     <% } else if (error) { %>

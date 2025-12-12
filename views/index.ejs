@@ -4,15 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= title %></title>
-    </head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">    
+</head>
 
 <body>
-    <h1> Rate a movie!</h1>
-    <p>Server is running as expected!</p>
+    <h1> Rate your movie ! 🍿🎥</h1>
+    <p id="intro">In this webpage, you can rate any movies you've watched and leave a brief review about them.
+        <ol>
+            <li>Click "Clear" if you are about to start rating to ensure you don't see any previous ratings.</li>
+            <li>Click "Search" to find the movie you'd like to rate.</li>
+            <li>Click "My ratings" to find the movies you've rated so far.</li>
+        </ol>
+    </p>
 
-    <hr>
+    <div class="nav-buttons">
+        <a href="/search">
+            <button id="search-button">Search Movie</button>
+        </a>
 
-    <a href="/search">Search Movies</a> | <a href="/history">Rating History</a>
+        <a href="/history">
+            <button id="history-button">My Ratings</button>
+        </a>
+
+        <a href="/clear">
+            <button id="clear-button">Clear</button>
+        </a>
+    </div>
 
 </body>
 </html>
