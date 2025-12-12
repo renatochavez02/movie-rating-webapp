@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const axios = require('axios');
+const Movie = require('../models/Movie');
+
 
 // GET route, shows the empty search field
 router.get('/', (req, res) => {
@@ -30,5 +32,21 @@ router.post('/', async(req, res) => {
         res.render('search', { movieData: null, error: 'Connection to API failed!' });
     }
 });
+
+router.post('/rate', async(req, res) => {
+    const { title, rating, comment } = req.body;
+
+    try {
+        await Movie.create({
+            title,
+            rating,
+            comment
+        });
+        res.redirect('/');
+    } catch (err) {
+        console.error(err);
+        res.send("Error saving rating.");
+    }
+})
 
 module.exports = router;
