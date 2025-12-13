@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cleared</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">    
+</head>
+<body>
+    <h1> Your Movie Rating History </h1>
+    <% if (movies.length === 0) { %>
+        <p>You have not rated any movies yet. Go to the <a href="/search">Search Movie</a> page to start rating!</p>
+    <% } else { %>
+        <table>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Rating</th>
+                    <th>Review</th>
+                    <th>Date Rated</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% movies.forEach(movie => { %>
+                    <tr>
+                        <td><%= movie.title %></td>
+                        <td><%= movie.rating %>/10</td>
+                        <td><%= movie.review ? movie.review : 'N/A' %></td>
+                        <td><%= movie.createdAt.toLocaleString() %></td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    <% } %>
+    <br>
+    <a href="/"><button id="home-button">Home Page</button></a>
+    <a href="/search"><button id="search-button">Search Movie</button></a
+</body>
+</html>

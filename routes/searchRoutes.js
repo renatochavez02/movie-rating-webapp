@@ -48,6 +48,16 @@ router.post('/rate', async(req, res) => {
         console.error(err);
         res.send("Error saving rating.");
     }
-})
+});
+
+router.get('/history', async(req, res) => {
+    try {
+        const movies = await Movie.find().sort({ createdAt: -1 });
+        res.render('history', { movies });
+    } catch (err) {
+        console.error(err);
+        res.send("Error loading history.");
+    }
+});
 
 module.exports = router;
