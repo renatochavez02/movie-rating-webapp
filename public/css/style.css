@@ -60,3 +60,25 @@ input[name="rating"] {
     color: green;
     font-size: 1.3rem;
 }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2rem;
+}
+
+th, td {
+    border: 1px solid rgb(27, 27, 146);
+    padding: 0.8rem;
+    text-align: left;
+}
+
+th {
+    background-color: rgb(173, 216, 230);
+    font-weight: 700;
+}
+
+tr:nth-child(even) {
+    background-color: rgb(236, 234, 234);
+}
+
